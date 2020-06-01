@@ -5,9 +5,8 @@ from handler import Handler
 
 async def pre_init(handler):
     conn = await asyncpg.connect(user="postgres",
-                                 database='test',
                                  password="pass1234",
-                                 host='localhost',
+                                 host='postgres',
                                  port=5432)
 
     handler.db_conn = conn

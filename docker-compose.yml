@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:12.2-alpine
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432/tcp"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass1234
+
+  testapi:
+    build:
+      context: ./API
+      dockerfile: DockerFile
+    volumes:
+      - ./API:/app
+    ports:
+      - "8080:8080/tcp"
+    depends_on: 
+      - postgres
+
+        
