@@ -10,7 +10,7 @@ class Handler():
     db_conn = None
     timeout = 10
 
-    async def Login(self, request):
+    async def login(self, request):
         data = await request.post()
 
         headers = MultiDict({'Authorization': ''})
@@ -34,7 +34,7 @@ class Handler():
 
         return web.json_response(status=200, headers=headers, data=data_to_response)
 
-    async def Logout(self, request):
+    async def logout(self, request):
         header = request.headers
         authorization = header.get('Authorization')
         headers = MultiDict({'Authorization': ''})
@@ -48,7 +48,7 @@ class Handler():
         else:
             return web.json_response(status=200, headers=headers)
 
-    async def TopicCreate(self, request):
+    async def topic_create(self, request):
         data = await request.post()
         title = data.get('title')
         body = data.get('body')
@@ -72,7 +72,7 @@ class Handler():
 
         return web.json_response(status=200, headers=headers, data=data_to_response)
 
-    async def TopicList(self, request):
+    async def topic_list(self, request):
         # data = await request.text()
         data = (await request.text()).split('&')
         data_list = {}
@@ -114,7 +114,7 @@ class Handler():
 
         return web.json_response(status=200, headers=headers, data=data_to_response)
 
-    async def TopicLike(self, request):
+    async def topic_like(self, request):
         data = await request.post()
         topic_id = data.get('topic_id')
 
@@ -153,7 +153,7 @@ class Handler():
         else:
             return web.json_response(status=403, headers=headers)
 
-    async def CommentCreate(self, request):
+    async def comment_create(self, request):
         data = await request.post()
         topic_id = data.get('topic_id')
         body = data.get('body')
@@ -184,7 +184,7 @@ class Handler():
             data_to_response = {'data': comment}
             return web.json_response(status=200, headers=headers, data=data_to_response)
 
-    async def CommentList(self, request):
+    async def comment_list(self, request):
         data = (await request.text()).split('&')
         data_list = {}
         limit = None

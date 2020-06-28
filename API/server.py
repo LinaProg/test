@@ -18,13 +18,13 @@ async def app_factory():
     app = web.Application()
 
     app.add_routes([
-        web.post('/auth.login', handler.Login),
-        web.post('/auth.logout', handler.Logout),
-        web.post('/topic.create', handler.TopicCreate),
-        web.get('/topic.list', handler.TopicList),
-        web.post('/topic.like', handler.TopicLike),
-        web.post('/comment.create', handler.CommentCreate),
-        web.get('/comment.list', handler.CommentList)
+        web.post('/auth.login', handler.login),
+        web.post('/auth.logout', handler.logout),
+        web.post('/topic.create', handler.topic_create),
+        web.get('/topic.list', handler.topic_list),
+        web.post('/topic.like', handler.topic_like),
+        web.post('/comment.create', handler.comment_create),
+        web.get('/comment.list', handler.comment_list)
     ])
     return app
 
