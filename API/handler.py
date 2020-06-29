@@ -3,6 +3,7 @@ import json
 import asyncio
 from database_requests import auth, check_token, logout, create_topic, get_topics, get_comments, like_topic, create_comment
 from multidict import MultiDict
+import configparser
 
 
 class Handler():

@@ -2,12 +2,18 @@ import asyncio
 import asyncpg
 from aiohttp import web
 from handler import Handler
+from configparser import ConfigParser
+
 
 async def pre_init(handler):
-    conn = await asyncpg.connect(user="postgres",
-                                 password="pass1234",
-                                 host='postgres',
-                                 port=5432)
+    config = ConfigParser()
+    config.read('configs/database.ini')
+    config=config['PostgreSQL']
+
+    conn = await asyncpg.connect(user=config['user'],
+                                 password=config['password'],
+                                 host=config['host'],
+                                 port=config['port'])
 
     handler.db_conn = conn
 
